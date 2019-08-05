@@ -23,7 +23,7 @@ public class UpdateStatus {
 	private String update_plan_nm;
 	private String update_exec_nm;
 	private String status;
+	private String routing;
 	private String error_code;
 }
-
 

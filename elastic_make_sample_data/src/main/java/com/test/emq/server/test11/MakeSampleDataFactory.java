@@ -5,11 +5,9 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.apache.http.HttpHost;
 import org.elasticsearch.action.index.IndexRequest;
 import org.elasticsearch.action.index.IndexResponse;
 import org.elasticsearch.client.RequestOptions;
-import org.elasticsearch.client.RestClient;
 import org.elasticsearch.client.RestHighLevelClient;
 
 import sample.model.UpdateStatus;
@@ -25,10 +23,22 @@ public class MakeSampleDataFactory {
 	// 업데이트 샘플 데이터 생성
 	public void makeUpdateSample() throws IOException {
 		
-		// 샘플 데이터 생성 : i=stb종류(샘플 데이터는 * 5정도 생성됨)
-		for(int i=0; i<2000; i++) {
-			genSampleUpdateStatus(i,client);
+		// 몇 일 전부터 데이터 만들지
+		int fromDay = 60;
+		
+		Long now = System.currentTimeMillis();
+		System.out.println("현재 : " + new Date(now));
+		Long startTime = System.currentTimeMillis() - (fromDay * 24 * 60 * 60 * 1000);
+
+		for(;startTime < now; startTime += (long)(1000 * 60 *60 * 2)) {
+			// 샘플 데이터 생성 : i=stb종류(샘플 데이터는 * 5정도 생성됨)
+			int stb_count = (int)(Math.random()* 20) +5;
+			System.out.println("일시 : " + new Date(startTime) + " stb count : " + stb_count);
+			for(int i=0; i<stb_count; i++) {
+				genSampleUpdateStatus(i,client, startTime);
+			}
 		}
+		
 	}
 	
 	// VOC 샘플 데이터 생성
@@ -38,12 +48,12 @@ public class MakeSampleDataFactory {
 	
 	
 	// 샘플 데이터 생성
-	public void genSampleUpdateStatus(int i, RestHighLevelClient client) throws IOException {
+	public void genSampleUpdateStatus(int i, RestHighLevelClient client, long startTime) throws IOException {
 		
 		int seed = (int)(Math.random() * 100);
 		Long temp = (long) 0;
 		String error_code = "000";
-		System.out.println("seed = " + seed);
+//		System.out.println("seed = " + seed);
 			
 		for(int j=0;j<(seed>=5?5:(seed+1));j++) {
 			
@@ -89,8 +99,10 @@ public class MakeSampleDataFactory {
 			
 			if(seed%12 > 10) {
 				us.setModel_nm("BKO-UH400");
-			}else{
+			}else if(seed%12 > 3){
 				us.setModel_nm("BKO-100");
+			}else{
+				us.setModel_nm("BKO-AI200");
 			}
 			
 			// 통합품솔 세팅
@@ -105,12 +117,35 @@ public class MakeSampleDataFactory {
 			}
 			
 			
+			// 업데이트 조건 세팅
+			if(seed%10 == 0) {
+				us.setRouting("Wake Up");
+			}else if(seed%10 == 1) {
+				us.setRouting("Wake Up");
+			}else if(seed%10 == 2) {
+				us.setRouting("Sleep");
+			}else if(seed%10 == 3) {
+				us.setRouting("Sleepp");
+			}else if(seed%10 == 4) {
+				us.setRouting("Sleep");
+			}else if(seed%10 == 5) {
+				us.setRouting("Manual");
+			}else if(seed%10 == 6) {
+				us.setRouting("Sleep State");
+			}else if(seed%10 == 7) {
+				us.setRouting("Wake Up");
+			}else if(seed%10 == 8) {
+				us.setRouting("Cold Booting");
+			}else if(seed%10 == 9) {
+				us.setRouting("Sleep");
+			}
+			
 			// random seed2 생성
 			int seed2 = (int)(Math.random() * 80)+20;
 			
 			// 시간 세팅
 			if(j == 0) {
-				temp = System.currentTimeMillis ();
+				temp = startTime;
 				temp = temp + seed2*seed2*1000 - 3600000;
 				Date date = new Date(temp);
 				us.setCreated_time(date);
@@ -143,10 +178,10 @@ public class MakeSampleDataFactory {
 		jsonMap.put("status", us.getStatus());
 		jsonMap.put("error_code", us.getError_code());
 		
-		IndexRequest indexRequest = new IndexRequest("tiger", "tiger").source(jsonMap);
+		IndexRequest indexRequest = new IndexRequest("elephant", "elephant").source(jsonMap);
 		
 		IndexResponse indexResponse = client.index(indexRequest, RequestOptions.DEFAULT);
 
-		System.out.println("결과 : " + i + "차수" + indexResponse.getResult());
+//		System.out.println("결과 : " + i + "차수" + indexResponse.getResult());
 	}
 }
