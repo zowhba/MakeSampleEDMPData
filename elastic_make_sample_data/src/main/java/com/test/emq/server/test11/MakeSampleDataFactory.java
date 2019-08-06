@@ -32,8 +32,8 @@ public class MakeSampleDataFactory {
 
 		for(;startTime < now; startTime += (long)(1000 * 60 *60 * 2)) {
 			// 샘플 데이터 생성 : i=stb종류(샘플 데이터는 * 5정도 생성됨)
-//			int stb_count = (int)(Math.random()* 20) +5;
-			int stb_count = 80000;
+			int stb_count = (int)(Math.random()* 20) +5;
+//			int stb_count = 80000;
 			System.out.println("일시 : " + new Date(startTime) + " stb count : " + stb_count);
 			for(int i=0; i<stb_count; i++) {
 				genSampleUpdateStatus(i,client, startTime);
