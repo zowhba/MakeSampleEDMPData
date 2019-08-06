@@ -32,7 +32,8 @@ public class MakeSampleDataFactory {
 
 		for(;startTime < now; startTime += (long)(1000 * 60 *60 * 2)) {
 			// 샘플 데이터 생성 : i=stb종류(샘플 데이터는 * 5정도 생성됨)
-			int stb_count = (int)(Math.random()* 20) +5;
+//			int stb_count = (int)(Math.random()* 20) +5;
+			int stb_count = 80000;
 			System.out.println("일시 : " + new Date(startTime) + " stb count : " + stb_count);
 			for(int i=0; i<stb_count; i++) {
 				genSampleUpdateStatus(i,client, startTime);
@@ -168,6 +169,7 @@ public class MakeSampleDataFactory {
 		Map<String, Object> jsonMap = new HashMap<>();
 		jsonMap.put("created_time", us.getCreated_time());
 		jsonMap.put("stb_id", us.getStb_id());
+		jsonMap.put("route_condition", us.getRouting());
 		jsonMap.put("sw_nm", us.getSw_nm());
 		jsonMap.put("team_nm", us.getTeam_nm());
 		jsonMap.put("model_nm", us.getModel_nm());
