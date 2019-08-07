@@ -98,23 +98,61 @@ public class MakeSampleDataFactory {
 			
 			// 모델명 세팅
 			
-			if(seed%12 > 10) {
+			if(seed%12 == 0) {
 				us.setModel_nm("BKO-UH400");
-			}else if(seed%12 > 3){
+			}else if(seed%12 == 1){
 				us.setModel_nm("BKO-100");
-			}else{
+			}else if(seed%12 == 2){
+				us.setModel_nm("BKO-200");
+			}else if(seed%12 == 3){
+				us.setModel_nm("BKO-300");
+			}else if(seed%12 == 4){
+				us.setModel_nm("BKO-400");
+			}else if(seed%12 == 5){
+				us.setModel_nm("BKO-500");
+			}else if(seed%12 == 6){
+				us.setModel_nm("BKO-600");
+			}else if(seed%12 == 7){
+				us.setModel_nm("BKO-700");
+			}else if(seed%12 == 8){
+				us.setModel_nm("BKO-800");
+			}else if(seed%12 == 9){
+				us.setModel_nm("BKO-900");
+			}else if(seed%12 == 10){
+				us.setModel_nm("BKO-100S");
+			}else if(seed%12 == 11){
 				us.setModel_nm("BKO-AI200");
 			}
 			
 			// 통합품솔 세팅
-			if(seed%7 > 4) {
+			if(seed%14 == 0) {
 				us.setTeam_nm("동작품질솔루션팀");
-			}else if(seed%7 == 4) {
+			}else if(seed%14 == 1) {
 				us.setTeam_nm("수원품질솔루션팀");
-			}else if(seed%7 == 3) {
+			}else if(seed%14 == 2) {
 				us.setTeam_nm("부산품질솔루션팀");
-			}else {
+			}else if(seed%14 == 3) {
+				us.setTeam_nm("강남품질솔루션팀");
+			}else if(seed%14 == 4) {
+				us.setTeam_nm("인천품질솔루션팀");
+			}else if(seed%14 == 5) {
+				us.setTeam_nm("전북품질솔루션팀");
+			}else if(seed%14 == 6) {
+				us.setTeam_nm("전남품질솔루션팀");
+			}else if(seed%14 == 7) {
+				us.setTeam_nm("충청품질솔루션팀");
+			}else if(seed%14 == 8) {
+				us.setTeam_nm("경북품질솔루션팀");
+			}else if(seed%14 == 9) {
+				us.setTeam_nm("경남품질솔루션팀");
+			}else if(seed%14 == 10) {
+				us.setTeam_nm("강동품질솔루션팀");
+			}else if(seed%14 == 11) {
 				us.setTeam_nm("강북품질솔루션팀");
+			}else if(seed%14 == 12) {
+				us.setTeam_nm("강원품질솔루션팀");
+			}else if(seed%14 == 13) {
+				us.setTeam_nm("제주품질솔루션팀");
 			}
 			
 			
