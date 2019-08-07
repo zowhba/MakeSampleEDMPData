@@ -24,7 +24,7 @@ public class MakeSampleDataFactory {
 	public void makeUpdateSample() throws IOException {
 		
 		// 몇 일 전부터 데이터 만들지
-		int fromDay = 60;
+		int fromDay = 10;
 		
 		Long now = System.currentTimeMillis();
 		System.out.println("현재 : " + new Date(now));
@@ -32,7 +32,7 @@ public class MakeSampleDataFactory {
 
 		for(;startTime < now; startTime += (long)(1000 * 60 *60 * 2)) {
 			// 샘플 데이터 생성 : i=stb종류(샘플 데이터는 * 5정도 생성됨)
-			int stb_count = (int)(Math.random()* 20) +5;
+			int stb_count = (int)(Math.random()* 50) +20;
 //			int stb_count = 80000;
 			System.out.println("일시 : " + new Date(startTime) + " stb count : " + stb_count);
 			for(int i=0; i<stb_count; i++) {
@@ -180,7 +180,7 @@ public class MakeSampleDataFactory {
 		jsonMap.put("status", us.getStatus());
 		jsonMap.put("error_code", us.getError_code());
 		
-		IndexRequest indexRequest = new IndexRequest("elephant", "elephant").source(jsonMap);
+		IndexRequest indexRequest = new IndexRequest("tiger", "tiger").source(jsonMap);
 		
 		IndexResponse indexResponse = client.index(indexRequest, RequestOptions.DEFAULT);
 
