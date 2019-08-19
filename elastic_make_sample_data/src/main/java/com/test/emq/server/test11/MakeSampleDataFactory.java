@@ -71,28 +71,38 @@ public class MakeSampleDataFactory {
 			String stat="";
 			if(j==0) {
 				stat = "Push발송";
+				error_code = "910";
 				if(seed==j) {
-					error_code = "990";
+					stat = "Push발송 실패";
+					error_code = "911";
 				}
 			}else if(j==1) {
 				stat = "다운로드 시작";
+				error_code = "920";
 				if(seed==j) {
-					error_code = "991";
+					stat = "설치 파일 미존재";
+					error_code = "921";
 				}
 			}else if(j==2) {
 				stat = "다운로드 완료";
+				error_code = "930";
 				if(seed==j) {
-					error_code = "992";
+					stat = "다운로드 중 오류";
+					error_code = "931";
 				}
 			}else if(j==3) {
 				stat = "설치 시작";
+				error_code = "940";
 				if(seed==j) {
-					error_code = "993";
+					stat = "설치 준비 중 STB 오류";
+					error_code = "941";
 				}
 			}else if(j==4) {
 				stat = "설치 완료";
+				error_code = "950";
 				if(seed==j) {
-					error_code = "994";
+					stat = "설치 중 오류";
+					error_code = "951";
 				}
 			}
 			
